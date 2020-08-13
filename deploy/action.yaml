@@ -5,7 +5,7 @@ inputs:
     description: Kubernetes namespace
     required: true
     default: default
-  namespace:
+  filename:
     description: Filename
     required: true
 runs:
