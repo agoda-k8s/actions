@@ -12,7 +12,5 @@ runs:
   using: docker
   image: 'docker://fergusn/deploy'
   args:
-  - -n 
-  - ${{ inputs.namespace }}
   - -f 
   - ${{ inputs.filename }}  
