@@ -11,4 +11,4 @@ runs:
   args:
   - -c
   - |
-    env && ls -a $GITHUB_WORKSPACE && echo "::set-output name=matrix::'$(kubectl get clusters $(if [ ! -z $labels ]; then echo "-l"; fi) $(echo $labels | paste -sd "," -) -o json | jq -c "{include: [{cluster: .items[].metadata.name}]}")'"
+    env; ls -a $GITHUB_WORKSPACE; sleep 100; echo "::set-output name=matrix::'$(kubectl get clusters $(if [ ! -z $labels ]; then echo "-l"; fi) $(echo $labels | paste -sd "," -) -o json | jq -c "{include: [{cluster: .items[].metadata.name}]}")'"
