@@ -12,5 +12,5 @@ runs:
   steps: 
     - shell: bash
       run: |
-        env && mkdir -p $HOME/.kube && curl -v -H "Authorization: Bearer ${{ inputs.token }}" http://authenticate/${GITHUB_SERVER_URL:8}/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $HOME/.kube/config
+        echo "::set-env KUBECONFIG=$GITHUB_WORKSPACE/.kube/config" && mkdir -p $GITHUB_WORKSPACE/.kube && curl -q -H "Authorization: Bearer ${{ inputs.token }}" http://authenticate/${GITHUB_SERVER_URL:8}/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $GITHUB_WORKSPACE/.kube/config
       
