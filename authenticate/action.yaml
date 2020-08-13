@@ -4,11 +4,13 @@ inputs:
   cluster:
     description: Kubernetes cluster name
     required: true
-  
+  token:
+    description: GitHub Token
+    required: true
 runs:
   using: "composite"
   steps: 
     - shell: bash
       run: |
-        mkdir -p $HOME/.kube && curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" http://authenticate.github/$(GITHUB_SERVER_URL:8)/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $HOME/.kube/config
+        mkdir -p $HOME/.kube && curl -H "Authorization: Bearer ${{ inputs.token }}" http://authenticate/$(GITHUB_SERVER_URL:8)/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $HOME/.kube/config
       
