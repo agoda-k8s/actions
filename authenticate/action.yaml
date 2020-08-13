@@ -7,10 +7,16 @@ inputs:
   token:
     description: GitHub Token
     required: true
+  server:
+    description: GitHub Server
+    required: true
+  repo:
+    description: GitHub Repo
+    required: true
 runs:
   using: "composite"
   steps: 
     - shell: bash
       run: |
-        mkdir -p $HOME/.kube && curl -H "Authorization: Bearer ${{ inputs.token }}" http://authenticate/$(GITHUB_SERVER_URL:8)/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }} > $HOME/.kube/config
+        env && mkdir -p $HOME/.kube && curl -H "Authorization: Bearer ${{ inputs.token }}" http://authenticate/$(INPUT_SERVER:8)/$INPUT_REPO?cluster=$INPUT_CLUSTER > $HOME/.kube/config
       
