@@ -8,9 +8,19 @@ inputs:
   filename:
     description: Filename
     required: true
+  token:
+    description: GitHub token
+    required: true
+  cluster:
+    description: Kubernetes cluster
+    required: true
 runs:
   using: docker
   image: 'docker://fergusn/deploy'
   args:
   - -f 
   - ${{ inputs.filename }}  
+  - --cluster
+  - ${{ inputs.cluster }}  
+  - --token
+  - ${{ inputs.token }}  
