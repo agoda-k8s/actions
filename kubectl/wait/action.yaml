@@ -1,0 +1,42 @@
+name: kubectl-wait
+description: |
+   Wait for a specific condition on one or many resources
+inputs: 
+  namespace: 
+    description: Resource namespace
+    required: false
+  all:
+    description: Select all resources in the namespace of the specified resource types
+    required: false
+  filename:
+    description: Filename identifying the resource
+    required: false
+  selector:
+    description: Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+    required: false
+  for: 
+    description: "The condition to wait on: [delete|condition=condition-name]"
+    required: true
+  timeout: 
+    description: The length of time to wait before giving up. Zero means check once and don't wait, negative means wait for a week.
+    required: true
+  type:
+    description: Resource type
+    required: true
+  name:
+    description: Resource name
+    required: false
+env:
+  option_namespace: ${{ inputs.namespace }}
+  option_all: ${{ inputs.all }}
+  option_filename: ${{ inputs.filename }}
+  option_selector: ${{ inputs.selector }}
+  option_for: ${{ inputs.for }}
+  option_timeout: ${{ inputs.timeout }}
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  args:
+  - wait
+  - ${{ inputs.type }}
+  - ${{ inputs.name }}  
