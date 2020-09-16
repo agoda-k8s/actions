@@ -1,0 +1,42 @@
+name: kubectl-delete
+description: |
+  Delete resources by filenames, stdin, resources and names, or by resources and label selector
+inputs: 
+  namespace: 
+    description: Resource namespace
+    required: false
+  all:
+    description: Delete all resources, including uninitialized ones, in the namespace of the specified resource types
+    required: false
+  filename:
+    description: Filename containing the resource to delete
+    required: false
+  kustomize: 
+    description: Process a kustomization directory
+    required: false
+  selector:
+    description: Selector (label query) to filter on, not including uninitialized ones
+    required: false
+  wait:
+    description: If true, wait for resources to be gone before returning. This waits for finalizers.
+    required: false
+  type:
+    description: Resource type
+    required: false
+  name:
+    description: Resource name
+    required: false
+env:
+  option_namespace: ${{ inputs.namespace }}
+  option_all: ${{ inputs.all }}
+  option_filename: ${{ inputs.filename }}
+  option_kustomize: ${{ inputs.kustomize }}
+  option_selector: ${{ inputs.selector }}
+  option_wait: ${{ inputs.wait }}
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  args:
+  - delete
+  - ${{ inputs.type }}
+  - ${{ inputs.name }}  

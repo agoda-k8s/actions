@@ -1,0 +1,28 @@
+name: kubectl-apply
+description: |
+  Apply a configuration to a resource by filename or stdin. The resource name must be specified. This resource will be
+  created if it doesn't exist yet.
+inputs: 
+  namespace: 
+    description: Resource namespace
+    required: false
+  filename:
+    description: Filename that contains the configuration to apply
+  recursive:
+    description: Process the directory used in filename recursively
+  kustomize:
+    description: Process a kustomization directory
+  selector:
+    description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)"
+    required: false
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  env: 
+    option_namespace: ${{ inputs.namespace }}
+    option_filename: ${{ inputs.filename }}
+    option_recursive: ${{ inputs.recursive }}
+    option_kustomize: ${{ inputs.kustomize }}
+    option_selector: ${{ inputs.selector }}
+  args:
+  - apply
