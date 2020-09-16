@@ -26,16 +26,16 @@ inputs:
   name:
     description: Resource name
     required: false
-env:
-  option_namespace: ${{ inputs.namespace }}
-  option_all: ${{ inputs.all }}
-  option_filename: ${{ inputs.filename }}
-  option_kustomize: ${{ inputs.kustomize }}
-  option_selector: ${{ inputs.selector }}
-  option_wait: ${{ inputs.wait }}
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  env:
+    option_namespace: ${{ inputs.namespace }}
+    option_all: ${{ inputs.all }}
+    option_filename: ${{ inputs.filename }}
+    option_kustomize: ${{ inputs.kustomize }}
+    option_selector: ${{ inputs.selector }}
+    option_wait: ${{ inputs.wait }}
   args:
   - delete
   - ${{ inputs.type }}

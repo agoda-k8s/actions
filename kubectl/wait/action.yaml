@@ -1,6 +1,6 @@
 name: kubectl-wait
 description: |
-   Wait for a specific condition on one or many resources
+  Wait for a specific condition on one or many resources
 inputs: 
   namespace: 
     description: Resource namespace
@@ -26,16 +26,16 @@ inputs:
   name:
     description: Resource name
     required: false
-env:
-  option_namespace: ${{ inputs.namespace }}
-  option_all: ${{ inputs.all }}
-  option_filename: ${{ inputs.filename }}
-  option_selector: ${{ inputs.selector }}
-  option_for: ${{ inputs.for }}
-  option_timeout: ${{ inputs.timeout }}
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  env:
+    option_namespace: ${{ inputs.namespace }}
+    option_all: ${{ inputs.all }}
+    option_filename: ${{ inputs.filename }}
+    option_selector: ${{ inputs.selector }}
+    option_for: ${{ inputs.for }}
+    option_timeout: ${{ inputs.timeout }}
   args:
   - wait
   - ${{ inputs.type }}
