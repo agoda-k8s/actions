@@ -1,0 +1,12 @@
+name: envsubst
+description: |
+  In-place environment variable substitution of a file
+inputs: 
+  file: 
+    description: File path
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/envsubst:latest"
+  args:
+  - ${{ inputs.file }}
