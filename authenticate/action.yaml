@@ -1,6 +1,9 @@
 name: Authenticate
 description: Validate token and generate certificate
 inputs:
+  token:
+    description: GitHub Token
+    required: true
   cluster:
     description: Kubernetes cluster name
     required: true
@@ -12,6 +15,6 @@ runs:
   image: "docker://reg-hk.agodadev.io/kubernetes/action-authenticate:v1"
   post-entrypoint: "/post-entrypoint.sh"
   args:
-  - ${{ github.token }}
+  - ${{ inputs.token }}
   - ${{ inputs.cluster }}
   - ${{ inputs.namespace }}
