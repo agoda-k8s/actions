@@ -1,9 +1,6 @@
 name: Authenticate
 description: Validate token and generate certificate
 inputs:
-  token:
-    description: GitHub Token
-    required: true
   cluster:
     description: Kubernetes cluster name
     required: true
@@ -11,10 +8,9 @@ inputs:
     description: Default namespace
     required: false
 runs:
-  using: docker
-  image: "docker://reg-hk.agodadev.io/kubernetes/action-authenticate:v1"
-  post-entrypoint: "/post-entrypoint.sh"
-  args:
-  - ${{ inputs.token }}
-  - ${{ inputs.cluster }}
-  - ${{ inputs.namespace }}
+  using: "composite"
+  steps: 
+    - shell: bash
+      run: |
+        echo "::set-env name=KUBECONFIG::$GITHUB_WORKSPACE/.kube/config" && mkdir -p $GITHUB_WORKSPACE/.kube && curl -H "Authorization: Bearer ${{ github.token }}" http://authenticate/${GITHUB_SERVER_URL:8}/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }}\&namespace=${{ inputs.namespace }} > $GITHUB_WORKSPACE/.kube/config
+      
