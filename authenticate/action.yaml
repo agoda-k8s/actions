@@ -8,9 +8,10 @@ inputs:
     description: Default namespace
     required: false
 runs:
-  using: "composite"
-  steps: 
-    - shell: bash
-      run: |
-        echo "::set-env name=KUBECONFIG::$GITHUB_WORKSPACE/.kube/config" && mkdir -p $GITHUB_WORKSPACE/.kube && curl -v -H "Authorization: Bearer ${{ github.token }}" http://authenticate/${GITHUB_SERVER_URL:8}/$GITHUB_REPOSITORY?cluster=${{ inputs.cluster }}&namespace=${{ inputs.namespace }} > $GITHUB_WORKSPACE/.kube/config
-      
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/action-authenticate:v1"
+  post-entrypoint: "/post-entrypoint.sh"
+  args:
+  - ${{ github.token }}
+  - ${{ inputs.cluster }}
+  - ${{ inputs.namespace }}
