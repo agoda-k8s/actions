@@ -1,0 +1,40 @@
+name: kubectl-get
+description: |
+  Display one or many resources
+inputs: 
+  namespace: 
+    description: Resource namespace
+    required: false
+  filename:
+    description: Filename identifying the resource
+    required: false
+  selector:
+    description: Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+    required: false
+  output:
+    description: "Output format. One of: json|yaml|wide|name|custom-columns|custom-columns-file|go-template|go-template-file|jsonpath|jsonpath-file"
+    required: false
+  type:
+    description: Resource type
+    required: true
+  name:
+    description: Resource name
+    required: false
+outputs:
+  stdout:
+    description: stdout from the kubectl get command
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  entrypoint: /get.sh
+  env:
+    option_namespace: ${{ inputs.namespace }}
+    option_all: ${{ inputs.all }}
+    option_filename: ${{ inputs.filename }}
+    option_selector: ${{ inputs.selector }}
+    option_for: ${{ inputs.for }}
+    option_timeout: ${{ inputs.timeout }}
+  args:
+  - ${{ inputs.type }}
+  - ${{ inputs.name }}  
+  
