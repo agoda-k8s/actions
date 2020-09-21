@@ -13,4 +13,4 @@ runs:
   entrypoint: /sudo.sh
   args:
   - ${{ inputs.namespace }}
-  - ${{ inputs.name }}
+  - ${{ inputs.cluster }}
