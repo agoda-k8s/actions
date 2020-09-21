@@ -1,0 +1,16 @@
+name: sudo
+description: Use administrator kube config
+inputs:
+  namespace:
+    description: Cluster namespace
+    required: true
+  cluster:
+    description: Cluster name
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  entrypoint: /sudo.sh
+  args:
+  - ${{ inputs.namespace }}
+  - ${{ inputs.name }}
