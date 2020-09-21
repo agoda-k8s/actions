@@ -1,0 +1,40 @@
+name: ansible-runner
+description: Ansible Runner
+inputs:
+  playbook:
+    description: Playbook
+    required: false
+  module:
+    description: Module
+    required: false
+  role:
+    description: Role
+    required: false
+  inventory:
+    description: Inventory
+    required: false
+  hosts:
+    description: Hosts
+    required: false
+  limit:
+    description: Limit
+    required: false
+  private-data-dir: 
+    description: Private Data Directory
+    required: false
+    default: "."
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/ansible-runner:latest"
+  env: 
+    option_playbook: ${{ inputs.playbook }}
+    option_module: ${{ inputs.module }}
+    option_role: ${{ inputs.role }}
+    option_inventory: ${{ inputs.inventory }}
+    option_hosts: ${{ inputs.hosts }}
+    option_limit: ${{ inputs.limit }}
+  args:
+  - /run.sh
+  - ${{ inputs["private-data-dir"] }}
+
+      
