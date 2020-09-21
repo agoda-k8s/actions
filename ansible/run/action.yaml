@@ -35,6 +35,6 @@ runs:
     option_limit: ${{ inputs.limit }}
   args:
   - /run.sh
-  - ${{ inputs["private-data-dir"] }}
+  - ${{ inputs.private-data-dir }}
 
       
