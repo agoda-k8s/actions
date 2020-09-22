@@ -8,6 +8,6 @@ runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/docker:latest"
   env:
-    docker_command: login
+    docker_command: push
   args:
   - ${{ inputs.image }}
