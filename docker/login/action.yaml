@@ -1,0 +1,22 @@
+name: docker-login
+description: Log in to a Docker registry
+inputs:
+  server:
+    description: Server
+    required: true
+  username:
+    description: Username
+    required: true
+  password:
+    description: Password
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/docker:latest"
+  env:
+    docker_command: login
+    option_username: ${{ inputs.username }} 
+    option_password: ${{ inputs.password }} 
+  post-entrypoint: '/logout.sh'
+  args:
+  - ${{ inputs.server }}

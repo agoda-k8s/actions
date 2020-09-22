@@ -1,0 +1,13 @@
+name: docker-push
+description: Push an image or a repository to a registry
+inputs:
+  image:
+    description: "The image name[:tag]"
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/docker:latest"
+  env:
+    docker_command: login
+  args:
+  - ${{ inputs.image }}

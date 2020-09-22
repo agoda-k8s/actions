@@ -1,0 +1,28 @@
+name: docker-build
+description: Build an image from a Dockerfile
+inputs:
+  context:
+    description: Build context
+    required: false
+    default: "."
+  build-args:
+    description: Set build-time variables
+    required: false
+  file: 
+    description:  Name of the Dockerfile (Default is 'PATH/Dockerfile')
+    required: false
+  tag:
+    description: Name and optionally a tag in the 'name:tag' format
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/docker:latest"
+  env: 
+    docker_command: build
+    option_file: ${{ inputs.file }}
+    option_tag: ${{ inputs.tag }}
+    option_build-arg: ${{ inputs.build-args }}
+  entrypoint: '/build.sh'
+  args:
+  - ${{ inputs.context }}
+
