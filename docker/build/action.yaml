@@ -22,7 +22,6 @@ runs:
     option_file: ${{ inputs.file }}
     option_tag: ${{ inputs.tag }}
     option_build-arg: ${{ inputs.build-args }}
-  entrypoint: '/build.sh'
   args:
   - ${{ inputs.context }}
 
