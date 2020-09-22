@@ -24,8 +24,8 @@ runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/docker:latest"
   env: 
-    docker_username: build
-    docker_password: build
+    docker_username: ${{ inputs.username }}
+    docker_password: ${{ inputs.password }}
     option_file: ${{ inputs.file }}
     option_tag: ${{ inputs.tag }}
     option_build-arg: ${{ inputs.build-args }}
