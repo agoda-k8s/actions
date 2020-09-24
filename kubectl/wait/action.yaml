@@ -31,7 +31,7 @@ runs:
   image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
   env:
     option_namespace: ${{ inputs.namespace }}
-    option_all: ${{ inputs.all }}
+    #option_all: ${{ inputs.all }}
     option_filename: ${{ inputs.filename }}
     option_selector: ${{ inputs.selector }}
     option_for: ${{ inputs.for }}
@@ -39,4 +39,5 @@ runs:
   args:
   - wait
   - ${{ inputs.type }}
-  - ${{ inputs.name }}  
+  - ${{ inputs.name }}
+  - ${{ inputs.all }}
