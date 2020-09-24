@@ -28,7 +28,7 @@ inputs:
     required: false
 runs:
   using: docker
-  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  image: "docker://reg-hk.agodadev.io/actions/kubectl:1.18.0"
   env:
     option_namespace: ${{ inputs.namespace }}
     #option_all: ${{ inputs.all }}

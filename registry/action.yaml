@@ -6,9 +6,7 @@ inputs:
     required: false
 runs:
   using: docker
-  image: 'docker://fergusn/kubectl'
-  entrypoint: sh
-  args:
-  - -c
-  - |
-    labels=${{ inputs.labels }} && echo ::set-output name=matrix::$(kubectl get clusters $(if [ ! -z $labels ]; then echo "-l"; fi) $(echo $labels | paste -sd "," -) -o json | jq -c "{include: [{cluster: .items[].metadata.name}]}")
+  image: "docker://reg-hk.agodadev.io/actions/kubectl:1.18.0"
+  entrypoint: /registry.sh
+  env: 
+    option_selector: ${{ inputs.labels }}

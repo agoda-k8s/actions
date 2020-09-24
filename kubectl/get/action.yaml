@@ -25,7 +25,7 @@ outputs:
     description: stdout from the kubectl get command
 runs:
   using: docker
-  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
+  image: "docker://reg-hk.agodadev.io/actions/kubectl:1.18.0"
   entrypoint: /get.sh
   env:
     option_namespace: ${{ inputs.namespace }}
