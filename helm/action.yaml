@@ -1,0 +1,7 @@
+name: 'helm-install'
+description: 'Run Helm Install'
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/infraops/helm:latest"
+  arg:
+  - list
