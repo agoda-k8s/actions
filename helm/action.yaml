@@ -4,4 +4,4 @@ runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/infraops/helm:latest"
   args:
-  - list
+  - list --all-namespace
