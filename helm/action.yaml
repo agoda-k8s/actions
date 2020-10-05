@@ -4,4 +4,11 @@ runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/infraops/helm:latest"
   args:
-  - upgrade --install ${{ inputs.name }} ${{ inputs.chart_url }} --namespace ${{ inputs.ns }} -f ${{ inputs.vfile }}
+  - upgrade
+  - --install
+  - ${{ inputs.name }}
+  - ${{ inputs.chart_url }}
+  - --namespace
+  - ${{ inputs.ns }}
+  - -f
+  - ${{ inputs.vfile }}
