@@ -1,5 +1,18 @@
 name: 'helm-install'
-description: 'Run Helm Install'
+description: 'To install or upgrade application with helm.'
+inputs:
+  name:
+    description: Specific name of application
+    required: true
+  chart_url:
+    description: Specific a chart url to deploy
+    required: true
+  ns:
+    description: Specific a namespace for deployment
+    required: true
+  vfile:
+    description: Specific a value file for helm chart
+    required: true
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/helm:latest"
