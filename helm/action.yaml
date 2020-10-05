@@ -1,0 +1,14 @@
+name: 'helm-install'
+description: 'Run Helm Install'
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/helm:latest"
+  args:
+  - upgrade
+  - --install
+  - ${{ inputs.name }}
+  - ${{ inputs.chart_url }}
+  - --namespace
+  - ${{ inputs.ns }}
+  - -f
+  - ${{ inputs.vfile }}
