@@ -2,7 +2,7 @@ name: 'helm-install'
 description: 'Run Helm Install'
 runs:
   using: docker
-  image: "docker://reg-hk.agodadev.io/infraops/helm:latest"
+  image: "docker://reg-hk.agodadev.io/actions/helm:latest"
   args:
   - upgrade
   - --install
