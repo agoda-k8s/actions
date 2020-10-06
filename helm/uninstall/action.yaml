@@ -1,0 +1,17 @@
+name: 'helm-uninstall'
+description: 'To remove application with helm.'
+inputs:
+  name:
+    description: Specific name of application
+    required: true
+  ns:
+    description: Specific a namespace for deployment
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/helm:latest"
+  args:
+  - uninstall
+  - ${{ inputs.name }}
+  - -n
+  - ${{ inputs.ns }}

@@ -1,0 +1,16 @@
+name: 'helm-rollback'
+description: 'To rollback application to specific revision.'
+inputs:
+  name:
+    description: Specific name of application
+    required: true
+  revision:
+    description: Specific a revision number of application
+    required: true
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/helm:latest"
+  args:
+  - rollback
+  - ${{ inputs.name }}
+  - ${{ inputs.revision }}
