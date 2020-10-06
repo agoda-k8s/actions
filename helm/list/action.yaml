@@ -1,0 +1,8 @@
+name: 'helm-list'
+description: 'To list application installed with helm.'
+runs:
+  using: docker
+  image: "docker://reg-hk.agodadev.io/actions/helm:latest"
+  args:
+  - list
+  - --all-namespaces
