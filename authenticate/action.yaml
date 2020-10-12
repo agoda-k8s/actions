@@ -13,8 +13,4 @@ inputs:
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/authenticate:latest"
-  post-entrypoint: '/cleanup.sh'
-  args:
-  - ${{ inputs.token }}
-  - ${{ inputs.cluster }}
-  - ${{ inputs.namespace }}
+  post-entrypoint: '/usr/local/bin/cleanup.sh'
