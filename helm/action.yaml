@@ -13,6 +13,9 @@ inputs:
   vfile:
     description: Specific a value file for helm chart
     required: true
+  vfile2:
+    description: Specific a secondary value file for helm chart
+    required: false
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/helm:latest"
@@ -25,3 +28,4 @@ runs:
   - ${{ inputs.ns }}
   - -f
   - ${{ inputs.vfile }}
+  - ${{ inputs.vfile2 }}
