@@ -28,4 +28,5 @@ runs:
   - ${{ inputs.ns }}
   - -f
   - ${{ inputs.vfile }}
+  - -f
   - ${{ inputs.vfile2 }}
