@@ -9,8 +9,5 @@ inputs:
     required: true
 runs:
   using: docker
-  image: "docker://reg-hk.agodadev.io/kubernetes/kubectl:1.18.0"
-  entrypoint: /sudo.sh
-  args:
-  - ${{ inputs.namespace }}
-  - ${{ inputs.cluster }}
+  image: "docker://reg-hk.agodadev.io/actions/sudo:latest"
+  post-entrypoint: "/usr/local/bin/cleanup.sh"

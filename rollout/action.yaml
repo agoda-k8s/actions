@@ -1,5 +1,5 @@
 name: Rollout
-description: Schedule the rollout of one or more repositories and clusters
+description: Schedule the rollout of one or more repositories to clusters
 inputs:
   clusters:
     description: Kubernetes clusters names

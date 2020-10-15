@@ -4,12 +4,13 @@ inputs:
   token:
     description: GitHub Token
     required: true
-  cluster:
-    description: Kubernetes cluster name
-    required: true
   namespace:
-    description: Default namespace
+    description: Cluster namespace
     required: false
+    default: default
+  cluster:
+    description: Cluster name
+    required: true
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/authenticate:latest"
