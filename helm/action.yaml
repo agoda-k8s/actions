@@ -13,12 +13,14 @@ inputs:
   vfile:
     description: Specific a value file for helm chart
     required: true
-  vfile2:
-    description: Specific a secondary value file for helm chart
+  datacenter:
+    description: Specific a secondary value file which contain datacenter specific value for helm chart
     required: false
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/helm:latest"
+  env: 
+    option_value: ${{ inputs.datacenter }}
   args:
   - upgrade
   - --install
@@ -28,5 +30,3 @@ runs:
   - ${{ inputs.ns }}
   - -f
   - ${{ inputs.vfile }}
-  - -f
-  - ${{ inputs.vfile2 }}
