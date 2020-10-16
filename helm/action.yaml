@@ -18,7 +18,7 @@ inputs:
     required: false
 runs:
   using: docker
-  image: "docker://reg-hk.agodadev.io/actions/helm:1.0.1"
+  image: "docker://reg-hk.agodadev.io/infraops/helm:1.0.1"
   entrypoint: /entry.sh
   env: 
     option_value: ${{ inputs.datacenter }}
