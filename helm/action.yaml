@@ -21,7 +21,7 @@ runs:
   image: "docker://reg-hk.agodadev.io/infraops/helm:1.0.1"
   entrypoint: /entry.sh
   env: 
-    option_value: ${{ inputs.datacenter }}
+    option_values: ${{ inputs.datacenter }}
   args:
   - upgrade
   - --install
