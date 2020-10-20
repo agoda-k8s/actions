@@ -7,10 +7,9 @@ inputs:
   namespace:
     description: Cluster namespace
     required: false
-    default: default
   cluster:
     description: Cluster name
-    required: true
+    required: false
 runs:
   using: docker
   image: "docker://reg-hk.agodadev.io/actions/authenticate:latest"
